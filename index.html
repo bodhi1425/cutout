@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#edece8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>在线抠图 / 图片去背景 — AI 一键去背景、本地不上传 | bodhi.tools</title>
+  <meta name="description" content="免费 AI 在线抠图,一键去除图片背景生成透明 PNG,可换白/黑底。100% 在浏览器本地处理(WebAssembly / WebGPU),图片不上传服务器,无水印、不限次数、无需注册。" />
+  <meta name="keywords" content="在线抠图,图片去背景,抠图工具,去除背景,透明背景,抠图换底,证件照换背景,AI抠图,remove background,图片抠图不上传" />
+  <link rel="canonical" href="https://cutout.bodhi.tools/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="在线抠图 / 图片去背景 — AI 一键去背景、本地不上传" />
+  <meta property="og:description" content="AI 一键去除图片背景生成透明 PNG,本地处理不上传。免费、无水印。" />
+  <meta property="og:url" content="https://cutout.bodhi.tools/" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"在线抠图 / 图片去背景","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"description":"AI 一键去除图片背景生成透明 PNG,100% 浏览器本地处理、图片不上传。"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"怎么免费在线抠图/去背景?","acceptedAnswer":{"@type":"Answer","text":"上传图片,点「去除背景」,AI 会在你的浏览器本地自动识别主体、抠掉背景,生成透明 PNG。可切换白底/黑底或保持透明,然后下载。免费、无水印。"}},{"@type":"Question","name":"我的图片会被上传到服务器吗?","acceptedAnswer":{"@type":"Answer","text":"不会。抠图由 AI 模型在你的浏览器本地运行(WebAssembly / WebGPU),图片不上传任何服务器,适合处理证件照、私密照片。"}},{"@type":"Question","name":"为什么第一次比较慢?","acceptedAnswer":{"@type":"Answer","text":"首次使用需要下载几十 MB 的 AI 抠图模型(之后浏览器会缓存,再次使用很快)。模型在本地运行,有独立显卡(支持 WebGPU)时速度更快。"}},{"@type":"Question","name":"抠图效果不完美怎么办?","acceptedAnswer":{"@type":"Answer","text":"AI 抠图对主体清晰、背景简单的图片效果最好;发丝、半透明、复杂背景可能有瑕疵。换一张主体更突出的图通常会更好。"}}]}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="在线抠图 首页">
+        <span class="seal-mark" aria-hidden="true"><span>抠</span></span>
+        <span><b>在线抠图</b><span class="sub mono">CUTOUT · BODHI.TOOLS</span></span>
+      </a>
+      <span class="trust" title="所有处理均在你的设备本地完成">
+        <span class="dot" aria-hidden="true"></span>
+        <span><span class="t-full">图片不上传 · </span>100% 本地处理</span>
+      </span>
+      <nav class="links" aria-label="导航">
+        <a href="https://bodhi.tools/tools">更多工具</a><a href="#how">原理</a><a href="#faq">常见问题</a>
+      </nav>
+    </div>
+  </header>
+
+  <a href="https://bodhi.tools" class="home-fab" aria-label="返回 bodhi.tools 主页">← bodhi.tools</a>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">CUTOUT · AI 本地抠图</span>
+          <h1>在线抠图,<br><em>一键去背景</em></h1>
+          <p class="lead">AI 自动识别主体、去除背景,生成透明 PNG,还能换白/黑底——证件照换底、电商主图、做表情包都用得上。全程在浏览器本地完成,图片不上传,免费、无水印。</p>
+          <div class="badges">
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 7.5 8 10 4.5-2.5 8-5 8-10V6l-8-4Z"/></svg>图片零上传</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/><path d="m9 13 2 2 4-4"/></svg>一键去背景</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>无水印</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>不限次数</span>
+          </div>
+        </div>
+        <div class="seal" aria-hidden="true">
+          <div><div class="s-top">REMOVE</div><div class="s-main">BG</div><div class="s-bot">ON-DEVICE AI</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="tool">
+      <div class="ws-head">
+        <h2>一键去除背景</h2>
+        <p>上传图片,AI 在本地抠出主体。首次需下载模型(之后缓存),图片不上传。</p>
+      </div>
+      <label class="dropzone" id="dropzone">
+        <span class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></span>
+        <div class="dz-title">拖入图片,或点击选择</div>
+        <div class="dz-hint">JPG / PNG / WebP · 主体清晰效果最佳 · 文件不会上传</div>
+        <input type="file" id="fileInput" accept="image/*" />
+      </label>
+      <div id="panel" hidden>
+        <div class="orig-meta" id="origMeta"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="cutBtn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M6 9v6a3 3 0 1 0 0 6"/><path d="M6 15a3 3 0 1 0 6 0"/><path d="m20 4-8.5 8.5"/><path d="m14 14 6 6"/></svg>去除背景
+          </button>
+        </div>
+        <div class="progress" id="progress"><i></i></div>
+        <div class="statusline" id="status" role="status" aria-live="polite"></div>
+        <div class="result" id="result"></div>
+      </div>
+      <p class="notice">抠图由 AI 模型在你的设备本地运行,图片不上传。首次需下载约几十 MB 模型(之后缓存);有独立显卡(WebGPU)时更快。</p>
+    </section>
+
+    <aside class="ad" aria-label="广告"><span class="ad-tag">广告位 · Ad Slot</span></aside>
+
+    <section class="block" id="how">
+      <span class="kicker">HOW IT WORKS</span>
+      <h2>本地 AI 抠图,图片不离开你的设备</h2>
+      <p class="lede">多数在线抠图工具会把你的图片上传到它们的服务器再处理。这个工具不一样——AI 模型直接在你的<strong>浏览器本地</strong>运行,适合证件照、私密照片,也不限次数、不加水印。</p>
+      <div class="steps">
+        <div class="step"><h3>上传图片</h3><p>主体清晰、背景简单的图效果最好。图片只进入当前网页。</p></div>
+        <div class="step"><h3>本地 AI 抠图</h3><p>模型在浏览器里识别主体、去掉背景,首次需下载模型(之后缓存)。</p></div>
+        <div class="step"><h3>换底 / 下载</h3><p>保持透明,或换白底/黑底,下载 PNG。</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <span class="kicker">FAQ</span>
+      <h2>常见问题</h2>
+      <div class="faq">
+        <details open><summary>怎么免费在线抠图 / 去背景?</summary><div class="ans">上传图片,点「去除背景」,AI 在浏览器本地自动抠出主体、生成透明 PNG。可换白/黑底或保持透明,然后下载。免费、无水印。</div></details>
+        <details><summary>我的图片会被上传到服务器吗?</summary><div class="ans">不会。抠图由 AI 模型在你的浏览器本地运行,图片不上传任何服务器,适合证件照、私密照片。</div></details>
+        <details><summary>为什么第一次比较慢?</summary><div class="ans">首次需下载几十 MB 的 AI 模型(之后浏览器缓存,再用很快)。模型本地运行,有独立显卡(WebGPU)时更快。</div></details>
+        <details><summary>抠图效果不完美怎么办?</summary><div class="ans">AI 抠图对主体清晰、背景简单的图效果最好;发丝、半透明、复杂背景可能有瑕疵,换一张主体更突出的图通常更好。</div></details>
+      </div>
+    </section>
+
+    <aside class="ad" aria-label="广告"><span class="ad-tag">广告位 · Ad Slot</span></aside>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="f-brand">
+        <b>在线抠图 · bodhi.tools</b>
+        <p>把隐私放在第一位的免费 AI 抠图工具,所有处理都在你的浏览器本地完成。</p>
+      </div>
+      <nav aria-label="相关">
+        <a href="https://bodhi.tools/tools">全部工具</a>
+        <a href="https://compress.bodhi.tools">图片压缩</a>
+        <a href="https://heic.bodhi.tools">HEIC 转换</a>
+      </nav>
+      <div class="copy mono">© <span id="year"></span> bodhi.tools · 图片不上传 · No image leaves your device.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

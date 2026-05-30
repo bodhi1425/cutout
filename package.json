@@ -1,0 +1,20 @@
+{
+  "name": "cutout",
+  "private": true,
+  "version": "1.0.0",
+  "description": "在线 AI 抠图 — 一键去除图片背景，本地处理不上传",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14"
+  },
+  "dependencies": {
+    "@imgly/background-removal": "^1.7.0"
+  }
+}
