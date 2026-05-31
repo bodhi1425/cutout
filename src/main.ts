@@ -84,6 +84,8 @@ cutBtn.addEventListener('click', async () => {
   try {
     const { removeBackground } = await import('@imgly/background-removal');
     cutBlob = (await removeBackground(file, {
+      model: 'isnet', // 最高质量模型(默认是半精度 fp16)
+      output: { format: 'image/png', quality: 0.8 },
       progress: (key: string, current: number, total: number) => {
         const r = total ? current / total : 0;
         setProgress(r);
