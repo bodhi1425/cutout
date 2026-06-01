@@ -2,6 +2,38 @@ import './style.css';
 
 const $ = <T extends HTMLElement = HTMLElement>(s: string) => document.querySelector(s) as T;
 
+const L = (document.documentElement.lang || 'zh').toLowerCase().startsWith('en') ? 'en' : 'zh';
+const T = {
+  zh: {
+    pickImg: '请选择图片(JPG / PNG / WebP)',
+    ready: '点「去除背景」开始(首次需下载模型,之后缓存)',
+    loadingModel: '正在加载 AI 模型(首次较慢)…',
+    dlModel: (p: number) => `下载模型 ${p}%…`,
+    cutting: (p: number) => `本地抠图 ${p}%…`,
+    done: '抠图完成',
+    fail: '抠图失败,换一张主体更清晰的图试试',
+    bgLabel: '背景',
+    tTransparent: '透明', tWhite: '白底', tBlack: '黑底',
+    downloadPng: '下载 PNG',
+    resultAlt: '抠图结果',
+    sfx: (bg: string | null) => (bg === '#ffffff' ? '白底' : bg === '#000000' ? '黑底' : '透明'),
+  },
+  en: {
+    pickImg: 'Please choose an image (JPG / PNG / WebP)',
+    ready: 'Click "Remove background" to start (model downloads once, then cached)',
+    loadingModel: 'Loading the AI model (slower on first run)…',
+    dlModel: (p: number) => `Downloading model ${p}%…`,
+    cutting: (p: number) => `Removing background ${p}%…`,
+    done: 'Done',
+    fail: 'Failed — try an image with a clearer subject',
+    bgLabel: 'Background',
+    tTransparent: 'Transparent', tWhite: 'White', tBlack: 'Black',
+    downloadPng: 'Download PNG',
+    resultAlt: 'Cutout result',
+    sfx: (bg: string | null) => (bg === '#ffffff' ? 'white' : bg === '#000000' ? 'black' : 'transparent'),
+  },
+}[L];
+
 const fileInput = $<HTMLInputElement>('#fileInput');
 const dropzone = $('#dropzone');
 const panel = $('#panel');
@@ -14,7 +46,7 @@ const resultEl = $('#result');
 
 let file: File | null = null;
 let cutBlob: Blob | null = null;
-let bg: string | null = null; // null=透明, '#ffffff', '#000000'
+let bg: string | null = null;
 
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = String(new Date().getFullYear());
@@ -35,7 +67,7 @@ function setProgress(r: number | null) {
 }
 
 function loadFile(f: File) {
-  if (!f.type.startsWith('image/')) { setStatus('请选择图片(JPG / PNG / WebP)', 'err'); return; }
+  if (!f.type.startsWith('image/')) { setStatus(T.pickImg, 'err'); return; }
   file = f; cutBlob = null;
   const url = URL.createObjectURL(f);
   const img = new Image();
@@ -51,7 +83,7 @@ function loadFile(f: File) {
   resultEl.classList.remove('show');
   resultEl.innerHTML = '';
   setProgress(null);
-  setStatus('点「去除背景」开始(首次需下载模型,之后缓存)');
+  setStatus(T.ready);
 }
 
 fileInput.addEventListener('change', () => {
@@ -74,39 +106,35 @@ dropzone.addEventListener('drop', (e) => {
   if (f) loadFile(f);
 });
 
-// ---------- 抠图(懒加载 @imgly) ----------
 cutBtn.addEventListener('click', async () => {
   if (!file) return;
   cutBtn.disabled = true;
   resultEl.classList.remove('show');
-  setStatus('正在加载 AI 模型(首次较慢)…');
+  setStatus(T.loadingModel);
   setProgress(0.02);
   try {
     const { removeBackground } = await import('@imgly/background-removal');
     cutBlob = (await removeBackground(file, {
-      model: 'isnet', // 最高质量模型(默认是半精度 fp16)
+      model: 'isnet',
       output: { format: 'image/png', quality: 0.8 },
       progress: (key: string, current: number, total: number) => {
         const r = total ? current / total : 0;
         setProgress(r);
-        setStatus(
-          key.startsWith('fetch') ? `下载模型 ${Math.round(r * 100)}%…` : `本地抠图 ${Math.round(r * 100)}%…`,
-        );
+        setStatus(key.startsWith('fetch') ? T.dlModel(Math.round(r * 100)) : T.cutting(Math.round(r * 100)));
       },
     })) as Blob;
     setProgress(null);
-    setStatus('抠图完成', 'ok');
+    setStatus(T.done, 'ok');
     bg = null;
     await renderResult();
   } catch (e) {
     setProgress(null);
-    setStatus((e as Error).message || '抠图失败,换一张主体更清晰的图试试', 'err');
+    setStatus((e as Error).message || T.fail, 'err');
   } finally {
     cutBtn.disabled = false;
   }
 });
 
-// 合成背景色(透明则原图)
 async function compose(blob: Blob, bgc: string | null): Promise<Blob> {
   if (!bgc) return blob;
   const bmp = await createImageBitmap(blob);
@@ -123,15 +151,14 @@ async function renderResult() {
   const out = await compose(cutBlob, bg);
   const url = URL.createObjectURL(out);
   const base = file!.name.replace(/\.[^.]+$/, '');
-  const suffix = bg === '#ffffff' ? '白底' : bg === '#000000' ? '黑底' : '透明';
   resultEl.innerHTML =
-    `<div class="cut-preview"><img src="${url}" alt="抠图结果" /></div>` +
+    `<div class="cut-preview"><img src="${url}" alt="${T.resultAlt}" /></div>` +
     `<div class="cut-bg-row">` +
-    `<span class="lbl">背景</span>` +
-    `<button class="cut-bg-btn" data-bg="" title="透明" aria-pressed="${bg === null}" style="background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/12px 12px"></button>` +
-    `<button class="cut-bg-btn" data-bg="#ffffff" title="白底" aria-pressed="${bg === '#ffffff'}" style="background:#fff"></button>` +
-    `<button class="cut-bg-btn" data-bg="#000000" title="黑底" aria-pressed="${bg === '#000000'}" style="background:#000"></button>` +
-    `<a class="btn btn-primary cut-dl" href="${url}" download="${base}-${suffix}.png">下载 PNG</a>` +
+    `<span class="lbl">${T.bgLabel}</span>` +
+    `<button class="cut-bg-btn" data-bg="" title="${T.tTransparent}" aria-pressed="${bg === null}" style="background:repeating-conic-gradient(#ccc 0 25%,#fff 0 50%) 0 0/12px 12px"></button>` +
+    `<button class="cut-bg-btn" data-bg="#ffffff" title="${T.tWhite}" aria-pressed="${bg === '#ffffff'}" style="background:#fff"></button>` +
+    `<button class="cut-bg-btn" data-bg="#000000" title="${T.tBlack}" aria-pressed="${bg === '#000000'}" style="background:#000"></button>` +
+    `<a class="btn btn-primary cut-dl" href="${url}" download="${base}-${T.sfx(bg)}.png">${T.downloadPng}</a>` +
     `</div>`;
   resultEl.classList.add('show');
   resultEl.querySelectorAll<HTMLButtonElement>('.cut-bg-btn').forEach((b) => {

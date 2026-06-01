@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#edece8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Remove Image Background — Free AI Cutout, 100% Local, No Upload | bodhi.tools</title>
+  <meta name="description" content="Free AI background remover: erase an image's background to a transparent PNG, or swap to white / black. 100% in your browser (WebAssembly / WebGPU), images never uploaded. No watermark, unlimited, no signup." />
+  <meta name="keywords" content="remove background, background remover, image cutout, transparent png, remove bg, erase background, ai background removal, remove background without upload, photo cutout" />
+  <link rel="canonical" href="https://cutout.bodhi.tools/en/" />
+  <link rel="alternate" hreflang="en" href="https://cutout.bodhi.tools/en/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://cutout.bodhi.tools/" />
+  <link rel="alternate" hreflang="x-default" href="https://cutout.bodhi.tools/en/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Remove Image Background — Free AI Cutout, 100% Local" />
+  <meta property="og:description" content="Erase image backgrounds to a transparent PNG, or swap to white/black. Runs locally in your browser, images never uploaded. Free, no watermark." />
+  <meta property="og:url" content="https://cutout.bodhi.tools/en/" />
+  <meta name="twitter:card" content="summary" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Remove Image Background — AI Cutout","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"AI background remover that erases backgrounds to a transparent PNG, 100% in your browser, images never uploaded."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove an image background for free?","acceptedAnswer":{"@type":"Answer","text":"Upload an image and click Remove background. The AI runs locally in your browser, detects the subject and erases the background to a transparent PNG. Swap to white/black or keep it transparent, then download. Free, no watermark."}},{"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The AI model runs locally in your browser (WebAssembly / WebGPU); images are never uploaded — good for ID photos and private pictures."}},{"@type":"Question","name":"Why is the first run slow?","acceptedAnswer":{"@type":"Answer","text":"The first time, a few-dozen-MB AI model is downloaded (then cached by your browser). It runs locally and is faster with a discrete GPU (WebGPU)."}},{"@type":"Question","name":"What if the cutout isn't perfect?","acceptedAnswer":{"@type":"Answer","text":"AI cutout works best on a clear subject with a simple background; hair, semi-transparent edges and busy backgrounds may have artifacts. A photo with a more prominent subject usually works better."}}]}</script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "4338726b0b084af88125b1047cb29bdf"}'></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="/en/" aria-label="Background Remover home">
+        <span class="seal-mark" aria-hidden="true"><span>抠</span></span>
+        <span><b>Cutout</b><span class="sub mono">CUTOUT · BODHI.TOOLS</span></span>
+      </a>
+      <span class="trust" title="Everything runs locally on your device">
+        <span class="dot" aria-hidden="true"></span>
+        <span><span class="t-full">Images never uploaded · </span>100% local</span>
+      </span>
+      <nav class="links" aria-label="Nav">
+        <a href="https://bodhi.tools/tools">More tools</a><a href="#how">How</a><a href="#faq">FAQ</a><a href="/" class="lang-switch">中文</a>
+      </nav>
+    </div>
+  </header>
+
+  <a href="https://bodhi.tools" class="home-fab" aria-label="Back to bodhi.tools">← bodhi.tools</a>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="kicker">CUTOUT · On-device AI</span>
+          <h1>Remove image background,<br><em>in one click</em></h1>
+          <p class="lead">AI detects the subject and erases the background to a transparent PNG — and you can swap to white/black. Great for ID photos, product shots and stickers. All in your browser, images never uploaded. Free, no watermark.</p>
+          <div class="badges">
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 7.5 8 10 4.5-2.5 8-5 8-10V6l-8-4Z"/></svg>No upload</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Z"/><path d="m9 13 2 2 4-4"/></svg>1-click</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No watermark</span>
+            <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Unlimited</span>
+          </div>
+        </div>
+        <div class="seal" aria-hidden="true">
+          <div><div class="s-top">REMOVE</div><div class="s-main">BG</div><div class="s-bot">ON-DEVICE AI</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace" id="tool">
+      <div class="ws-head">
+        <h2>Remove background in one click</h2>
+        <p>Upload an image; the AI extracts the subject locally. First run downloads a model (then cached); images never uploaded.</p>
+      </div>
+      <label class="dropzone" id="dropzone">
+        <span class="dz-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg></span>
+        <div class="dz-title">Drop an image, or click to choose</div>
+        <div class="dz-hint">JPG / PNG / WebP · clear subject works best · never uploaded</div>
+        <input type="file" id="fileInput" accept="image/*" />
+      </label>
+      <div id="panel" hidden>
+        <div class="orig-meta" id="origMeta"></div>
+        <div class="actions">
+          <button class="btn btn-primary" id="cutBtn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M6 9v6a3 3 0 1 0 0 6"/><path d="M6 15a3 3 0 1 0 6 0"/><path d="m20 4-8.5 8.5"/><path d="m14 14 6 6"/></svg>Remove background
+          </button>
+        </div>
+        <div class="progress" id="progress"><i></i></div>
+        <div class="statusline" id="status" role="status" aria-live="polite"></div>
+        <div class="result" id="result"></div>
+      </div>
+      <p class="notice">The AI model runs locally on your device; images are never uploaded. First run downloads a few-dozen-MB model (then cached); faster with a discrete GPU (WebGPU).</p>
+    </section>
+
+    <aside class="ad" aria-label="Ad"><span class="ad-tag">广告位 · Ad Slot</span></aside>
+
+    <section class="block" id="how">
+      <span class="kicker">HOW IT WORKS</span>
+      <h2>Local AI cutout — images never leave your device</h2>
+      <p class="lede">Most online background removers upload your image to their servers first. This one is different — the AI model runs right in your <strong>browser</strong>, so it's good for ID photos and private pictures, with no limits and no watermark.</p>
+      <div class="steps">
+        <div class="step"><h3>Upload an image</h3><p>A clear subject on a simple background works best. The image only enters this page.</p></div>
+        <div class="step"><h3>Local AI cutout</h3><p>The model detects the subject and removes the background in your browser; first run downloads the model.</p></div>
+        <div class="step"><h3>Swap bg / download</h3><p>Keep it transparent, or switch to white/black, then download the PNG.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <span class="kicker">FAQ</span>
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details open><summary>How do I remove a background for free?</summary><div class="ans">Upload an image, click Remove background. The AI runs locally and extracts the subject to a transparent PNG. Swap to white/black or keep transparent, then download. Free, no watermark.</div></details>
+        <details><summary>Are my images uploaded to a server?</summary><div class="ans">No. The AI runs locally in your browser (WebAssembly / WebGPU); images are never uploaded — good for ID photos and private pictures.</div></details>
+        <details><summary>Why is the first run slow?</summary><div class="ans">The first time, a few-dozen-MB model is downloaded (then cached). It runs locally and is faster with a discrete GPU (WebGPU).</div></details>
+        <details><summary>What if the cutout isn't perfect?</summary><div class="ans">AI cutout works best on a clear subject with a simple background; hair, semi-transparent edges and busy backgrounds may have artifacts. A more prominent subject usually works better.</div></details>
+      </div>
+    </section>
+
+    <aside class="ad" aria-label="Ad"><span class="ad-tag">广告位 · Ad Slot</span></aside>
+  </main>
+
+  <footer class="site">
+    <div class="wrap">
+      <div class="f-brand">
+        <b>Cutout · bodhi.tools</b>
+        <p>A privacy-first free AI background remover — everything runs locally in your browser.</p>
+      </div>
+      <nav aria-label="Related">
+        <a href="https://bodhi.tools/tools">All tools</a>
+        <a href="https://compress.bodhi.tools">Image compress</a>
+        <a href="https://heic.bodhi.tools">HEIC converter</a>
+      </nav>
+      <div class="copy mono">© <span id="year"></span> bodhi.tools · No image leaves your device.</div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
