@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#edece8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>Remove Image Background — Free AI Cutout, 100% Local, No Upload | bodhi.tools</title>
-  <meta name="description" content="Free AI background remover: erase an image's background to a transparent PNG, or swap to white / black. 100% in your browser (WebAssembly / WebGPU), images never uploaded. No watermark, unlimited, no signup." />
+  <meta name="description" content="Free AI background remover: erase an image's background to a transparent PNG, or swap to white / black. 100% in your browser (WebAssembly), images never uploaded. No watermark, unlimited, no signup." />
   <meta name="keywords" content="remove background, background remover, image cutout, transparent png, remove bg, erase background, ai background removal, remove background without upload, photo cutout" />
   <link rel="canonical" href="https://cutout.bodhi.tools/en/" />
   <link rel="alternate" hreflang="en" href="https://cutout.bodhi.tools/en/" />
@@ -18,7 +18,7 @@
   <meta property="og:url" content="https://cutout.bodhi.tools/en/" />
   <meta name="twitter:card" content="summary" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Remove Image Background — AI Cutout","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"AI background remover that erases backgrounds to a transparent PNG, 100% in your browser, images never uploaded."}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove an image background for free?","acceptedAnswer":{"@type":"Answer","text":"Upload an image and click Remove background. The AI runs locally in your browser, detects the subject and erases the background to a transparent PNG. Swap to white/black or keep it transparent, then download. Free, no watermark."}},{"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The AI model runs locally in your browser (WebAssembly / WebGPU); images are never uploaded — good for ID photos and private pictures."}},{"@type":"Question","name":"Why is the first run slow?","acceptedAnswer":{"@type":"Answer","text":"The first time, a few-dozen-MB AI model is downloaded (then cached by your browser). It runs locally and is faster with a discrete GPU (WebGPU)."}},{"@type":"Question","name":"What if the cutout isn't perfect?","acceptedAnswer":{"@type":"Answer","text":"AI cutout works best on a clear subject with a simple background; hair, semi-transparent edges and busy backgrounds may have artifacts. A photo with a more prominent subject usually works better."}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove an image background for free?","acceptedAnswer":{"@type":"Answer","text":"Upload an image and click Remove background. The AI runs locally in your browser, detects the subject and erases the background to a transparent PNG. Swap to white/black or keep it transparent, then download. Free, no watermark."}},{"@type":"Question","name":"Are my images uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The AI model runs locally in your browser (WebAssembly); images are never uploaded — good for ID photos and private pictures."}},{"@type":"Question","name":"Why is the first run slow?","acceptedAnswer":{"@type":"Answer","text":"The first time, about 190 MB of AI model and runtime files are downloaded (then cached by your browser), so use Wi-Fi for the first run. It runs locally, so speed depends on your device."}},{"@type":"Question","name":"What if the cutout isn't perfect?","acceptedAnswer":{"@type":"Answer","text":"AI cutout works best on a clear subject with a simple background; hair, semi-transparent edges and busy backgrounds may have artifacts. A photo with a more prominent subject usually works better."}}]}</script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "4338726b0b084af88125b1047cb29bdf"}'></script>
 </head>
 <body>
@@ -33,7 +33,7 @@
         <span><span class="t-full">Images never uploaded · </span>100% local</span>
       </span>
       <nav class="links" aria-label="Nav">
-        <a href="https://bodhi.tools/tools">More tools</a><a href="#how">How</a><a href="#faq">FAQ</a><a href="/" class="lang-switch">中文</a>
+        <a href="#all-tools">More tools</a><a href="#how">How</a><a href="#faq">FAQ</a><a href="/" class="lang-switch">中文</a>
       </nav>
     </div>
   </header>
@@ -82,10 +82,8 @@
         <div class="statusline" id="status" role="status" aria-live="polite"></div>
         <div class="result" id="result"></div>
       </div>
-      <p class="notice">The AI model runs locally on your device; images are never uploaded. First run downloads a few-dozen-MB model (then cached); faster with a discrete GPU (WebGPU).</p>
+      <p class="notice">The AI model runs locally on your device; images are never uploaded. First run downloads about 190 MB (then cached), so use Wi-Fi if you can.</p>
     </section>
-
-    <aside class="ad" aria-label="Ad"><span class="ad-tag">广告位 · Ad Slot</span></aside>
 
     <section class="block" id="how">
       <span class="kicker">HOW IT WORKS</span>
@@ -103,13 +101,12 @@
       <h2>FAQ</h2>
       <div class="faq">
         <details open><summary>How do I remove a background for free?</summary><div class="ans">Upload an image, click Remove background. The AI runs locally and extracts the subject to a transparent PNG. Swap to white/black or keep transparent, then download. Free, no watermark.</div></details>
-        <details><summary>Are my images uploaded to a server?</summary><div class="ans">No. The AI runs locally in your browser (WebAssembly / WebGPU); images are never uploaded — good for ID photos and private pictures.</div></details>
-        <details><summary>Why is the first run slow?</summary><div class="ans">The first time, a few-dozen-MB model is downloaded (then cached). It runs locally and is faster with a discrete GPU (WebGPU).</div></details>
+        <details><summary>Are my images uploaded to a server?</summary><div class="ans">No. The AI runs locally in your browser (WebAssembly); images are never uploaded — good for ID photos and private pictures.</div></details>
+        <details><summary>Why is the first run slow?</summary><div class="ans">The first time, about 190 MB of model and runtime files are downloaded (then cached). It runs locally, so speed depends on your device; use Wi-Fi for the first run.</div></details>
         <details><summary>What if the cutout isn't perfect?</summary><div class="ans">AI cutout works best on a clear subject with a simple background; hair, semi-transparent edges and busy backgrounds may have artifacts. A more prominent subject usually works better.</div></details>
       </div>
     </section>
 
-    <aside class="ad" aria-label="Ad"><span class="ad-tag">广告位 · Ad Slot</span></aside>
   </main>
 
   <footer class="site">
@@ -118,10 +115,12 @@
         <b>Cutout · bodhi.tools</b>
         <p>A privacy-first free AI background remover — everything runs locally in your browser.</p>
       </div>
-      <nav aria-label="Related">
-        <a href="https://bodhi.tools/tools">All tools</a>
-        <a href="https://compress.bodhi.tools">Image compress</a>
-        <a href="https://heic.bodhi.tools">HEIC converter</a>
+      <nav id="all-tools" aria-label="All tools">
+        <a href="https://pdf.bodhi.tools/en/">PDF toolbox</a>
+        <a href="https://compress.bodhi.tools/en/">Image compress</a>
+        <a href="https://heic.bodhi.tools/en/">HEIC converter</a>
+        <a href="https://qrcode.bodhi.tools/en/">QR generator</a>
+        <a href="https://ocr.bodhi.tools/en/">Image to text</a>
         <a href="https://github.com/bodhi1425/cutout">Source code</a>
       </nav>
       <div class="copy mono">© <span id="year"></span> bodhi.tools · No image leaves your device.</div>
